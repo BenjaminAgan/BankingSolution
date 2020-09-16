@@ -16,7 +16,7 @@ namespace BankingUnitTests
         {
             var stubbedBonusCalculator = new Mock<ICalculateBankAccountBonuses>();
             stubbedBonusCalculator.Setup(c => c.GetDepositBonusFor(1000, 500)).Returns(42);
-            var account = new BankAccount(stubbedBonusCalculator.Object);
+            var account = new BankAccount(new StubbedBonusCalculator(), new Mock<INotifyTheFeds>().Object);
             var openingBalance = account.GetBalance();
             account.Deposit(500);
             Assert.Equal(openingBalance+500+42,account.GetBalance());

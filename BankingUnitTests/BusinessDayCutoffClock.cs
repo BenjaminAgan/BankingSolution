@@ -13,7 +13,7 @@ namespace BankingUnitTests
         public void BeforeFiveOClock()
         {
             var fakeClock = new Mock<ISystemTime>();
-            fakeClock.Setup(c => c.GetCurrent()).Returns(new DateTime(1969, 4, 20, 16, 59, 59));
+            fakeClock.Setup(c => c.GetCurrent()).Returns(new DateTime(1969, 4, 20, 16, 0, 0));
 
             IProvideTheCutoffClock clock = new StandardCutoffClock(fakeClock.Object);
 

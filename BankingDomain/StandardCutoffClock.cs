@@ -14,7 +14,7 @@ namespace BankingDomain
 
         public bool BeforeCutoff()
         {
-            return DateTime.Now.Hour < 17 ? true : false;
+            return _systemTime.GetCurrent().Hour < 17 ? true : false;
         }
     }
 }

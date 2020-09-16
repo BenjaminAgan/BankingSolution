@@ -17,7 +17,7 @@ namespace BankingUnitTests
         {
             //Write The Code You Wish You had 
             //Given
-            var account = new BankAccount(new Mock<ICalculateBankAccountBonuses>().Object);
+            var account = new BankAccount(new DummyBonusCalculator(), new Mock<INotifyTheFeds>().Object);
             //When
             decimal balance = account.GetBalance();
             //Then
