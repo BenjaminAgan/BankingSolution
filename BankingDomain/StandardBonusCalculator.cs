@@ -6,12 +6,19 @@ namespace BankingDomain
 {
     public class StandardBonusCalculator : ICalculateBankAccountBonuses
     {
+        private IProvideTheCutoffClock _cutoffClock;
+
+        public StandardBonusCalculator(IProvideTheCutoffClock cutoffClock)
+        {
+            _cutoffClock = cutoffClock;
+        }
+
         public decimal GetDepositBonusFor(decimal balance, decimal amountToDeposit)
         {
             // accoutns with at least 1000 & it is before 5pm get 10%, otherwise 8%
             if (EligibleForBonus(balance))
             {
-                if (BeforeCutoff())
+                if (_cutoffClock.BeforeCutoff())
                 {
                     return amountToDeposit * .1M;
                 }
